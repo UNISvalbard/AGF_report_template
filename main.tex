@@ -1,0 +1,45 @@
+% The very first thing in every latex file is the definition of the document class, in this case scrbook. There is also e.g. article, report, letter, beamer... The arguments in the square-brackets are optional arguments defining e.g. the font size (11pt) or the margins (DIV, BCOR).
+\documentclass[11pt,bibliography=totoc,openany,numbers=noendperiod]{scrbook}
+
+% Import of packages and options regarding the whole document are outsourced in preamble.sty, which is a so-called style-file (that's why the -.sty ending). So similar to e.g. "import numpy" in Python, there is many packages which are loaded in there. So let's have a look at it...
+\usepackage{preamble}
+\bibliographystyle{apalike}	% the style how the references are written in the list of references, see https://www.overleaf.com/learn/latex/Natbib_bibliography_styles 
+   
+% Begin of the main body of your document. This command must be followed by an \end{document} command at the very end of the document.
+\begin{document}
+
+% title page
+\include{titlepage}
+
+% tables (table of contents, abbreviations, list of figures, abstract, ...)
+% start preamble --> page numbering roman
+\frontmatter
+
+\include{preface}
+
+% table of contents
+\tableofcontents		% this command automatically creates a toc from the section names you specify further down, see https://www.overleaf.com/learn/latex/Table_of_contents
+\cleardoublepage		% empty pages to separate the table of contents	from the rest
+
+
+% Introductory part: might not be needed for all courses, delete if not applicable
+\backmatter % even though it is not in the back, the backmatter formatting can be used to distinguish this part from the main scientific chapters
+\include{./introduction}
+
+% main part --> page numbering arabic
+\mainmatter
+
+\include{./report_john}				% include the the different chapters, which are saved in separate files
+% ...
+
+
+\cleardoublepage
+
+
+
+% appendix
+\appendix								% change style to Appendix
+\include{./appendix}
+
+    
+\end{document}

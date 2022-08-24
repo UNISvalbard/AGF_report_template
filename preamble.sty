@@ -1,0 +1,157 @@
+% packages are always loaded with \usepackage[options]{packagename}. Don't try to understand all of them, but also don't delete them if you don't know what they do... I have commented some that are relatively common... But you can google each and every single of these packages and will find the official documentation with all available optional arguments etc...
+
+
+\usepackage[main=english, norsk, german]{babel}		% language packages for special letters, e.g. ü, ä, ö from German and ø, æ, å from Norwegian. English is defined as the main language, but the big advantage is that you can directly type the special letters, e.g. ü.
+
+
+\usepackage[utf8]{inputenc} 	% what encoding is used to interpret the letters
+\usepackage[T1]{fontenc}
+\usepackage{mathptmx}
+\usepackage[pdftex]{color} 		% to get a colorful pdf
+\usepackage{setspace}
+\usepackage[pdftex]{graphicx}
+\usepackage[final]{listings}  
+\usepackage{ae,aecompl}
+\usepackage{tabulary}
+\usepackage{colortbl}
+\usepackage{appendix}			% the name says it, needed to have an appendix section in your document
+\usepackage{nameref}
+\usepackage{hhline}
+\usepackage{textcmds}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{scrhack}
+
+
+\usepackage{lipsum} 		% dummy texts, could be deleted once there is only your great research in the document
+
+
+\usepackage[round]{natbib}		% natbib is the package to create a bibliography in styles typical for natural sciences. The option round specifies, that the citations are done using round brackets (instead of square brackets)
+
+\usepackage{chapterbib}
+
+
+\makeatletter
+\renewenvironment{thebibliography}[1]
+     {\section*{\bibname}% <-- this line was changed from \chapter* to \section*
+      \@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin\labelwidth
+            \advance\leftmargin\labelsep
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+\makeatother
+
+  
+  
+% cross out text with \sout;
+% option 'normalem' prevents a redefinition of the makro \emph{}
+\usepackage[normalem]{ulem}	
+
+
+
+% AMS-packages			--> needed for all kind of mathematical symbols, setting equations etc... very handy for mathematics and physicists...
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsbsy}
+\usepackage{amstext}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+  
+% The following 3 packages replace the outdated palatino-package
+% For reason see 'Das Latex2-Sündenregister' by Mart Trettin
+\usepackage{mathpazo}
+\usepackage[scaled=.95]{helvet}
+\usepackage{courier}
+\setkomafont{sectioning}{\normalcolor\bfseries}
+
+% pdfbookmarks 
+% (immediately generates table of contents and links for the PDF)
+\usepackage[pdfstartview=FitH,   
+  			pdffitwindow=true,
+  			colorlinks,
+  			linkcolor=black,	%red
+  			anchorcolor=black,
+  			citecolor=black,	%blue
+  			urlcolor=black,
+  			unicode=true]{hyperref}		% this package also creates direct links within the PDF, so that you can e.g. click on the citation in the text, and you will jump to the full reference in the list of references... very handy... see https://ctan.uib.no/macros/latex/contrib/hyperref/doc/manual.pdf
+  
+% lines in header and footer switched on
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
+	
+% set page layout
+\pagestyle{scrheadings}
+	
+% adjustment of header and footer line (Koma-guide: 'Kopf- und Fußzeilen mit scrpage2')
+\ohead[\pagemark]{\pagemark}
+\chead[\headmark]{\headmark}
+\ofoot{}
+	
+% page layout 'scrheadings' instead of default 'scrplain',
+% also to be used for index- and chapter pages.
+\renewcommand*{\chapterpagestyle}{scrheadings}
+\renewcommand*{\indexpagestyle}{scrheadings}
+	
+% also empty pages created by \cleardoublepage shall use page layout 'scrheadings'
+% (Koma-guide: 'Vakatseiten')
+\KOMAoptions{cleardoublepage=scrheadings}
+    
+% line distance
+\setstretch{1.24}
+  
+% margins
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    top=2cm,
+    bottom=3cm,
+    left=2cm,
+    right=2cm
+}
+  
+% PDF dokument informationen, metadata of the pdf, e.g. the title shows up in the head of the window, when you open the pdf
+\hypersetup{
+  	pdftitle     = {AGF-214 report},
+  	pdfsubject   = {UNIS / AGF / Oceanography},
+  	pdfauthor    = {AGF-214},
+  	pdfkeywords  = {?, ?? ,???}
+}
+  
+% Listings format (source code)
+\definecolor{lightgrey}{rgb}{0.90,0.90,0.90}
+\lstloadlanguages{XML}
+\lstset{
+    tabsize=2,
+    escapeinside={(*@}{@*)},
+    captionpos=t,
+    framerule=0pt,
+    backgroundcolor=\color{lightgrey},
+    basicstyle=\small\ttfamily,
+    keywordstyle=\small\bfseries,
+    numbers=left,
+    fontadjust}
+  
+% table captions above instead of below the table
+\KOMAoptions{captions=tableheading}     
+
+\numberwithin{equation}{section}	% the numbering of the equations is based on the section numbers
+
+\usepackage[section]{placeins}		% regulates, how far e.g. figures can "float" within the document, in this case only within sections, see https://ctan.uib.no/macros/latex/contrib/placeins/placeins-doc.pdf
+
+\usepackage{upgreek}				% capital greek letters
+
